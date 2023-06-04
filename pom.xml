@@ -68,8 +68,9 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <packaging>jar</packaging>
     <build>
+        <finalName>produtos-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
