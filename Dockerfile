@@ -9,7 +9,7 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 # Package stage
 #
-FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/produtos-service.jar /usr/local/lib/produtos-service.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/produtos-service.jar"]
+# FROM openjdk:11-jre-slim
+# COPY --from=build /home/app/target/produtos-service.jar /usr/local/lib/produtos-service.jar
+# EXPOSE 8080
+# ENTRYPOINT ["java","-jar","/usr/local/lib/produtos-service.jar"]
