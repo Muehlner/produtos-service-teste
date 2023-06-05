@@ -1,7 +1,7 @@
 #
 # Build stage
-#
-FROM maven:3.6.0-jdk-11-slim AS build
+#   
+FROM maven:3.6.3-jdk-11-slim AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
@@ -9,12 +9,13 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 # Package stage
 #
-# FROM openjdk:11-jre-slim
-# COPY --from=build /home/app/target/produtos-service.jar /usr/local/lib/produtos-service.jar
-# EXPOSE 8080
-# ENTRYPOINT ["java","-jar","/usr/local/lib/produtos-service.jar"]
+FROM openjdk:11-jre-slim
 
-FROM openjdk:11-jre-slim 
-COPY --from=build /usr/src/app/target/produtos-service.jar /usr/app/produtos-service.jar  
-EXPOSE 8081  
-ENTRYPOINT ["java","-jar","/usr/app/produtos-service.jar"]  
+COPY . /usr/src/app
+
+WORKDIR /usr/src/app
+
+COPY target/produtos-service.jar ./
+
+ENTRYPOINT [ "java", "-jar", "produtos-service.jar" ]
+ 
